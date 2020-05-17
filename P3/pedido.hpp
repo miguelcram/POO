@@ -53,25 +53,3 @@ class Pedido{
 std::ostream &operator<<(std::ostream &os, const Pedido &P);
 
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#endif

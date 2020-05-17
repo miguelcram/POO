@@ -1,5 +1,6 @@
 #ifndef PEDIDO_ARTICULO_HPP
 #define PEDIDO_ARTICULO_HPP
+#include <ostream>
 #include "articulo.hpp"
 #include "pedido.hpp"
 
@@ -36,14 +37,14 @@ class Pedido_Articulo{
         ItemsPedido &detalle(Pedido &ped);
         Pedidos ventas(Articulo &art);
         std::ostream &mostrarDetallePedidos(std::ostream &);
-        std::ostream &mostrarDetalleArticulos(std::ostream &);
+        std::ostream &mostrarVentasArticulos(std::ostream &);
         
     private:
         std::map<Pedido *, ItemsPedido, OrdenaPedidos> PA;
         std::map<Articulo *, Pedidos, OrdenaArticulos> AP;
 };
 
-std::ostream &operator<<(std::ostream &os, const LineaPedido &lp);
-std::ostream &operator<<(std::ostream &os, const Pedido_Articulo::Pedidos &ped);
-std::ostream &operator<<(std::ostream &os, const Pedido_Articulo::ItemsPedido &item);
+std::ostream &operator <<(std::ostream &os, const LineaPedido &lp);
+std::ostream &operator <<(std::ostream &os, const Pedido_Articulo::Pedidos &ped);
+std::ostream &operator <<(std::ostream &os, const Pedido_Articulo::ItemsPedido &item);
 #endif

@@ -11,6 +11,7 @@ class Articulo{
         const Cadena referencia() const;
         const Cadena titulo() const;
         const Fecha f_publi() const;
+        
         double precio() const;
         double& precio();
         unsigned stock() const;

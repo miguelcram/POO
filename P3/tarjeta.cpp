@@ -31,8 +31,7 @@ Numero::Numero(const Cadena &cad){
         Cadena tmp(aux.c_str());
         cad_ = tmp;
     }
-    /*numero_ = Cadena(cad);
-    numero_ = numero_.substr(0,std::remove_if(numero_.begin(),numero_.end(), isspace)-numero_.begin());*/
+    
     if(aux.length()<13 || aux.length()>19){
         throw Incorrecto(Razon::LONGITUD);
     }
@@ -42,9 +41,7 @@ Numero::Numero(const Cadena &cad){
     if(std::find_if(numero_.begin(), numero_.end(), std::not1(EsDigito)) != numero_.length()){
         throw Incorrecto(Razon::DIGITOS);
     }
-    /*if(static_cast<size_t>(std::count_if(numero_.begin(), numero_.end(), static_cast<int(*)(int)>(std::isdigit))) != numero_.length()){
-        throw Incorrecto(Razon::DIGITOS);
-    }*/
+    
     if(!luhn(numero_)){
         throw Incorrecto(Razon::NO_VALIDO);
     }

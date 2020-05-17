@@ -6,6 +6,7 @@
 #include "fecha.hpp"
 
 class Usuario;  //declaracion anticipada
+
 struct EsDigito:public std::unary_function<char, bool>{
     bool operator()(char c) const{ return isdigit(c); }
 }
