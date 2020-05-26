@@ -6,12 +6,11 @@
 
 class LineaPedido{
     public:
-        explicit LineaPedido(double precio, unsigned cant=1) : preciovent_(precio), cantidad(cant_) {}
-        double precio_venta() const{ return preciovent_; }
-        unsigned cantidad() const{ return cant_; }
-
+        explicit LineaPedido(double p, unsigned c = 1) : precvent_(p), cant_(c) {}
+        double precio_venta() const { return precvent_; }
+        unsigned cantidad() const { return cant_; }
     private:
-        double preciovent_;
+        double precvent_;
         unsigned cant_;
 };
 
@@ -31,20 +30,19 @@ class Pedido_Articulo{
     public:
         typedef std::map<Articulo *, LineaPedido, OrdenaArticulos> ItemsPedido;
         typedef std::map<Pedido *, LineaPedido, OrdenaPedidos> Pedidos;
-        void pedir(Pedido &pedido, Articulo &articulo, double prec, unsigned cant=1);
-        void pedir(Articulo &articulo, Pedido &pedido, double prec, unsigned cant=1);   //Sobrecarga
-        
+        void pedir(Pedido &ped, Articulo &art, double pr, unsigned cant = 1);
+        void pedir(Articulo &art, Pedido &ped, double pr, unsigned cant = 1);
         ItemsPedido &detalle(Pedido &ped);
         Pedidos ventas(Articulo &art);
         std::ostream &mostrarDetallePedidos(std::ostream &);
         std::ostream &mostrarVentasArticulos(std::ostream &);
-        
     private:
         std::map<Pedido *, ItemsPedido, OrdenaPedidos> PA;
         std::map<Articulo *, Pedidos, OrdenaArticulos> AP;
 };
 
-std::ostream &operator <<(std::ostream &os, const LineaPedido &lp);
-std::ostream &operator <<(std::ostream &os, const Pedido_Articulo::Pedidos &ped);
-std::ostream &operator <<(std::ostream &os, const Pedido_Articulo::ItemsPedido &item);
+std::ostream &operator<<(std::ostream &os, const LineaPedido &lp);
+std::ostream &operator<<(std::ostream &os, const Pedido_Articulo::Pedidos &ped);
+std::ostream &operator<<(std::ostream &os, const Pedido_Articulo::ItemsPedido &item);
+
 #endif

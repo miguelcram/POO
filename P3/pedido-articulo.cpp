@@ -7,8 +7,8 @@ std::ostream &operator <<(std::ostream &os, const LineaPedido &lp){
 }
 
 void Pedido_Articulo::pedir(Pedido &pedido, Articulo &articulo, double prec, unsigned cant){
-    PA[&pedido].insert(std::make_pair(&articulo, LineaPedido(precio, cant)));
-    AP[&articulo].insert(std::make_pair(&pedido, LineaPedido(precio, cant)));
+    PA[&pedido].insert(std::make_pair(&articulo, LineaPedido(prec, cant)));
+    AP[&articulo].insert(std::make_pair(&pedido, LineaPedido(prec, cant)));
 }
 
 void Pedido_Articulo::pedir(Articulo &articulo, Pedido &pedido, double prec, unsigned cant){
@@ -23,7 +23,7 @@ Pedido_Articulo::Pedidos Pedido_Articulo::ventas(Articulo &art){
     return AP[&art];
 }
 
-std::ostream &operator<<(std::ostream &os, const Pedido_Articulo::Pedidos &ped){
+std::ostream &operator <<(std::ostream &os, const Pedido_Articulo::Pedidos &ped){
     unsigned tmp_cantidad = 0;
     double tmp_total = 0.0;
 
@@ -40,7 +40,7 @@ std::ostream &operator<<(std::ostream &os, const Pedido_Articulo::Pedidos &ped){
 
     os << Cadena(66, '=') << std::endl
        << std::fixed << std::setprecision(2) << tmp_total << " €\t"
-       << tmp_cantidad << std::endl
+       << tmp_cantidad << std::endl;
     
     return os;
 }
@@ -48,40 +48,19 @@ std::ostream &operator<<(std::ostream &os, const Pedido_Articulo::Pedidos &ped){
 std::ostream &operator <<(std::ostream &os, const Pedido_Articulo::ItemsPedido &item){
     double tmp_total = 0.0;
     os << "\n"
-       << Cadena(66, "=") << std::endl
+       << Cadena(66, '=') << std::endl
        << " PVP\tCantidad\tArticulo\n"
-       << Cadena(66, "=") << std::endl;
+       << Cadena(66, '=') << std::endl;
 
-    for(const auto &i : PA){
+    for(const auto &i : item){
         os << i.second << "\t\t[" << i.first->referencia() << "] \""
            << i.first->titulo() << "\"" << std::endl;
         tmp_total += i.second.precio_venta() * i.second.cantidad();
     }
 
-    os << Cadena(66, "=") << std::endl
+    os << Cadena(66, '=') << std::endl
        << "Total\t" << std::fixed << std::setprecision(2) << tmp_total << " €\n"
        << std::endl;
-    
-    return os;
-}
-
-std::ostream &operator <<(std::ostream &os, const Pedido_Articulo::Pedidos &ped){
-    unsigned tmp_cantidad = 0;
-    double tmp_total = 0.0;
-    os << "[Pedidos: " << ped.size() << "]\n"
-       << Cadena(66,"=") << std::endl
-       << "  PVP\tCantidad\t\tFecha de venta\n"
-       << Cadena(66, "=") << std::endl
-    
-    for(const auto &i : ped){
-        os << i.second << "\t\t" << i.first->fecha() << std::endl;
-        tmp_total += i.second.precio_venta() * i.second.cantidad();
-        tmp_cantidad += i.second.cantidad();
-    }
-
-    os << Cadena(66, "=") << std::endl
-       << std::fixed << std::setprecision(2) << tmp_total << " €\t"
-       << tmp_cantidad << std::endl;
     
     return os;
 }

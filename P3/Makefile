@@ -43,7 +43,9 @@ STD = c++17
 
 # Opciones para el compilador. Añada o quite las que prefiera pero deje
 # la primera. Recomendado: no quite ninguna.
-CXXFLAGS = -std=${STD} -g -pedantic -Wall
+CXXFLAGS = -std=${STD} -g -pedantic -Wall -Wextra -Wfloat-equal -Wundef \
+		-Wcast-align -Wwrite-strings -Wmissing-declarations -Wredundant-decls \
+		-Woverloaded-virtual
 # Opciones del preprocesador. No quite estas.
 CPPFLAGS = ${INCLUDES} -D${NOMBREPRACTICA}
 
@@ -58,9 +60,9 @@ VPATH     = .:${DIRFECHACADENA}:${DIRLUHN}:${DIRTESTS}
 # NOTA IMPORTANTE: usuario-pedido.cpp no hace falta si se hacen los métodos
 # de Usuario_Pedido inline, pero si se definen normales en usuario-pedido.cpp, 
 # añádase a OWN_SRCS y quítese usuario-pedido.hpp de OWN_HDRS.
-OWN_SRCS  = usuario.cpp tarjeta.cpp articulo.cpp \
-	pedido-articulo.cpp pedido.cpp usuario-pedido.cpp
-OWN_HDRS  = $(OWN_SRCS:.cpp=.hpp)
+OWN_SRCS  = usuario.cpp tarjeta.cpp articulo.cpp pedido-articulo.cpp pedido.cpp
+OWN_HDRS  = $(OWN_SRCS:.cpp=.hpp) usuario-pedido.hpp
+
 OWN_OBJS  = $(OWN_SRCS:.cpp=.o)
 
 MAIN_SRCS = test-caso3-consola.cpp

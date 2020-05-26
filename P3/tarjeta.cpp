@@ -8,12 +8,12 @@
 bool luhn(const Cadena &cad);
 
 static Cadena str_toupper(Cadena s){
-    std::transform(s.begin(), s.end(), s.begin(), [](unsigned char c){ return std::toupper(c); });
+    std::transform(s.begin(), s.end(), s.begin(), [](unsigned char c) { return std::toupper(c); });
     return s;
 }
 
 bool operator<(const Numero &A, const Numero &B){
-    return strcmp(A,B) < 0;
+    return strcmp(A, B) < 0;
 }
 
 Numero::operator const char *() const{
@@ -24,12 +24,13 @@ Numero::Numero(const Cadena &cad){
     if (cad.length() == 0){
         throw Incorrecto(Razon::LONGITUD);
     }
+
     Cadena aux(cad);
     Cadena::iterator end = remove_if(aux.begin(), aux.end(), EsBlanco());
     if(end != aux.end()){
         *end = '\0';
         Cadena tmp(aux.c_str());
-        cad_ = tmp;
+        numero_ = tmp;
     }
     
     if(aux.length()<13 || aux.length()>19){
@@ -38,7 +39,7 @@ Numero::Numero(const Cadena &cad){
 
     numero_ = aux.c_str();
 
-    if(std::find_if(numero_.begin(), numero_.end(), std::not1(EsDigito)) != numero_.length()){
+    if(std::find_if(numero_.begin(), numero_.end(), std::not1(EsDigito())) != numero_.end()){
         throw Incorrecto(Razon::DIGITOS);
     }
     
