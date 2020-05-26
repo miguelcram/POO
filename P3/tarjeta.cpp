@@ -123,7 +123,7 @@ std::ostream &operator<<(std::ostream &os, const Tarjeta::Tipo &t){
         os << "AmericanExpress";
         break;
     default:
-        os << "Otro";
+        os << "Tipo indeterminado";
         break;
     }
     return os;
