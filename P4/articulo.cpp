@@ -3,13 +3,8 @@
 #include "cadena.hpp"
 #include "fecha.hpp"
 
-Articulo::Articulo(Autores autr, const Cadena &ref, const Cadena &til, const Fecha &publi, double precio)
-    : autor_(autr),
-      referencia_(ref),
-      titulo_(til),
-      f_publi_(publi),
-      precio_(precio) {
-  if (autor_.empty()) throw Autores_vacios();
+Articulo::Articulo(Autores autr, const Cadena &ref, const Cadena &til, const Fecha &publi, double precio) : autor_(autr), referencia_(ref), titulo_(til), f_publi_(publi), precio_(precio){
+    if (autor_.empty()) throw Autores_vacios();
 }
 
 const Cadena &Articulo::referencia() const{ return referencia_; }
