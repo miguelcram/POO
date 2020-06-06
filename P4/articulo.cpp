@@ -18,6 +18,8 @@ const Articulo::Autores &Articulo::autores() const{ return autor_; }
 std::ostream &operator<<(std::ostream &os, const Articulo &art){
     os << "[" << art.referencia() << "] \"" << art.titulo() << "\", de ";
     auto autor = art.autores().begin();
+    os << (*autor)->apellidos();
+
     for(++autor; autor != art.autores().end(); ++autor){
         os << ", " << (*autor)->apellidos();
     }
@@ -25,5 +27,6 @@ std::ostream &operator<<(std::ostream &os, const Articulo &art){
     os << art.f_publi().anno() << ". " << std::fixed << std::setprecision(2)
        << art.precio() << " €\n\t";
     art.impresion_especifica(os);
+
     return os;
 }
